@@ -334,7 +334,7 @@
         this.ids = [];
         const {propsValue} = this;
         node.checkedNodes.forEach(item => {
-          if (leafPriority) {
+          if (this.leafPriority) {
             console.log(this.propsChildren);
             if (!item[this.propsChildren]) {
               this.ids.push(item[propsValue]);
