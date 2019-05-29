@@ -8,10 +8,10 @@
 <template>
   <div class="el-tree-select">
     <!-- 下拉文本 -->
-    <el-select :style="styles" class="el-tree-select-input" v-model="labels" :disabled="disabled"
+    <el-select :style="styles" class="el-tree-select-input" style="width:100%" v-model="labels" :disabled="disabled"
                popper-class="select-option" ref="select" v-bind="selectParams" :popper-append-to-body="false"
                :filterable="false" v-popover:popover @remove-tag="_selectRemoveTag" @clear="_selectClearFun"
-               @focus="_popoverShowFun" style="width:100%"></el-select>
+               @focus="_popoverShowFun"></el-select>
     <!-- 弹出框 -->
     <el-popover :disabled="disabled" ref="popover" :placement="placement" popper-class="el-tree-select-popper"
                 :width="width" v-model="visible" trigger="click">
@@ -314,6 +314,7 @@
               this.visible = false;
             }
           } else {
+			
             this.ids.push(data[propsValue]);
           }
         }
@@ -331,7 +332,14 @@
         this.ids = [];
         const {propsValue} = this;
         node.checkedNodes.forEach(item => {
-            this.ids.push(item[propsValue]);
+			if(this.leafPriority){
+				if(!item[this.propsChildren]){
+					this.ids.push(item[propsValue]);
+				}
+			}else{
+				this.ids.push(item[propsValue]);
+			}
+            
         });
         /*
         点击复选框，对外抛出   `data, node, vm`<br>
