@@ -11,7 +11,7 @@
     <el-select :style="styles" class="el-tree-select-input" v-model="labels" :disabled="disabled"
                popper-class="select-option" ref="select" v-bind="selectParams" :popper-append-to-body="false"
                :filterable="false" v-popover:popover @remove-tag="_selectRemoveTag" @clear="_selectClearFun"
-               @focus="_popoverShowFun"></el-select>
+               @focus="_popoverShowFun" style="width:100%"></el-select>
     <!-- 弹出框 -->
     <el-popover :disabled="disabled" ref="popover" :placement="placement" popper-class="el-tree-select-popper"
                 :width="width" v-model="visible" trigger="click">
