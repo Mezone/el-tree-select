@@ -208,12 +208,9 @@
       }
     },
     created() {
-      console.log("createeeeeeeeeee");
       const {props, data} = this.treeParams;
       const {multiple} = this.selectParams;
       const {leafPriority} = this.treeParams;
-
-      console.log("---------- leafPriority " + leafPriority);
 
       this.propsValue = props.value;
       this.propsLabel = props.label;
@@ -264,7 +261,7 @@
         }
         if (multiple) {
           el.setCheckedKeys(ids);
-          this.labels = el.getCheckedNodes().map(item => item[this.propsLabel]) || [];
+          this.labels = el.getCheckedNodes(this.leafPriority).map(item => item[this.propsLabel]) || [];
         } else {
           el.setCurrentKey(ids[0]);
           if (el.getCurrentNode()) {
@@ -334,15 +331,7 @@
         this.ids = [];
         const {propsValue} = this;
         node.checkedNodes.forEach(item => {
-          if (this.leafPriority) {
-            console.log(this.propsChildren);
-            if (!item[this.propsChildren]) {
-              this.ids.push(item[propsValue]);
-            }
-          } else {
             this.ids.push(item[propsValue]);
-          }
-
         });
         /*
         点击复选框，对外抛出   `data, node, vm`<br>
