@@ -39,7 +39,6 @@
 
   .el-tree-select-popper {
     max-height: 400px;
-    overflow: auto;
   }
 
   .el-tree-select-popper .el-button--small {
